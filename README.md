@@ -85,7 +85,8 @@ results/
   Summary metrics, final comparison tables, generated figures, and attribution outputs.
 
 config/
-  Model configuration used for B3/B3+DRKG.
+  Model hyperparameters used for B3/B3+DRKG. The final reported run overrides
+  the Optuna-selected alpha with alpha = 0.8 from the command line.
 ```
 
 Large raw datasets, HDF5 files, official DRKG dumps, and fold-level checkpoints are intentionally excluded from Git tracking.
@@ -101,7 +102,8 @@ Embedding dimension: 200
 TransE epochs: 50
 Prediction training: 3 seeds x 5 folds
 Split type: cell-line split
-Main model epochs: 50
+Internal validation: 10% of training rows for early stopping
+Main model epoch budget: maximum 50 epochs with early stopping
 LDS: disabled
 Multitask loss alpha: 0.8
 ```
@@ -116,7 +118,7 @@ BRCA1, BRCA2, ARID1A, IDH1, IDH2
 
 ## Final Results
 
-Overall validation results:
+Overall held-out fold results, averaged over 15 seed-fold runs:
 
 | Model | AAC RMSE | AAC Pearson | log2IC50 RMSE | log2IC50 Pearson | Combined RMSE |
 |---|---:|---:|---:|---:|---:|
@@ -126,7 +128,7 @@ Overall validation results:
 | B3 | 0.1046 | 0.8290 | 2.3209 | 0.8044 | 0.7695 |
 | B3+DRKG | **0.1032** | **0.8330** | **2.2903** | **0.8094** | **0.7594** |
 
-NSCLC-only validation results:
+NSCLC-only held-out fold results, averaged over the NSCLC subset of the same held-out folds:
 
 | Model | AAC RMSE | AAC Pearson | log2IC50 RMSE | log2IC50 Pearson | Combined RMSE |
 |---|---:|---:|---:|---:|---:|
@@ -202,6 +204,14 @@ Detailed reproduction notes are in:
 
 ```text
 README_REPRODUCE.md
+```
+
+Important: this GitHub repository does not include the large raw/processed datasets or full fold-level checkpoints. To rerun the full training pipeline, first restore or regenerate the required data files documented in `README_REPRODUCE.md`, especially:
+
+```text
+Data/DRP_Training_Data/DepMap_26Q1_Expression.hdf
+Data/DRP_Training_Data/CTRP_AAC_IC50_SMILES.hdf
+DRKG_pipeline/official_data/drkg.tsv
 ```
 
 ## Data Availability
