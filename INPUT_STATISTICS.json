@@ -1,0 +1,133 @@
+{
+  "processed_ctrpv2_response": {
+    "rows_cell_line_drug_pairs": 226455,
+    "unique_cell_lines": 791,
+    "unique_drugs": 544,
+    "columns": [
+      "cpd_name",
+      "ccl_name",
+      "primary_disease",
+      "area_above_curve",
+      "ic50",
+      "log2_ic50",
+      "cpd_smiles"
+    ],
+    "targets": [
+      "area_above_curve",
+      "log2_ic50"
+    ],
+    "rows_after_log2_ic50_filter_-15_to_15": 220795
+  },
+  "depmap_26q1_expression": {
+    "rows_cell_lines": 1719,
+    "unique_cell_lines_after_name_normalization": 1719,
+    "gene_expression_features": 19215,
+    "matrix_shape_used": [
+      1719,
+      19215
+    ],
+    "metadata_columns_present": [
+      "DepMap_ID",
+      "stripped_cell_line_name",
+      "primary_disease"
+    ]
+  },
+  "drkg_feature": {
+    "feature_matrix_shape": [
+      104,
+      200
+    ],
+    "index_rows": 104,
+    "unique_drkg_compounds": 104,
+    "unique_drugbank_ids": 104,
+    "embedding_dim": 200
+  },
+  "final_model_input_after_intersection": {
+    "rows_cell_line_drug_pairs": 39654,
+    "unique_cell_lines": 766,
+    "unique_drugs": 84,
+    "expression_input_dim": 19215,
+    "drug_structure_input": "SMILES converted to molecular graph for AttentiveFP",
+    "kg_input_dim": 200,
+    "targets": [
+      "AAC / area_above_curve",
+      "log2(IC50)"
+    ],
+    "pairs_per_cell_line_min_median_max": [
+      3,
+      53.0,
+      77
+    ],
+    "pairs_per_drug_min_median_max": [
+      8,
+      533.5,
+      732
+    ],
+    "top_primary_disease_pair_counts": {
+      "Lung Cancer": 7291,
+      "Leukemia": 3907,
+      "Lymphoma": 2632,
+      "Brain Cancer": 2289,
+      "Colon/Colorectal Cancer": 2209,
+      "Skin Cancer": 2095,
+      "Ovarian Cancer": 1986,
+      "Breast Cancer": 1865,
+      "Gastric Cancer": 1551,
+      "Head and Neck Cancer": 1465,
+      "Pancreatic Cancer": 1441,
+      "Endometrial/Uterine Cancer": 1324,
+      "Myeloma": 1298,
+      "Bladder Cancer": 1267,
+      "Esophageal Cancer": 1266,
+      "Kidney Cancer": 1054,
+      "Liver Cancer": 995,
+      "Bone Cancer": 741,
+      "Neuroblastoma": 701,
+      "Sarcoma": 667
+    }
+  },
+  "nsclc_subset_prepared": {
+    "definition": "lineage_2 == 'Non-Small Cell Lung Cancer' using DepMap 26Q1 metadata",
+    "all_lung_cell_lines_in_matched_data": 135,
+    "nsclc_cell_lines_in_matched_data": 101,
+    "nsclc_pairs_in_matched_data": 5195,
+    "drugs_in_nsclc_subset": 84,
+    "lineage_3_counts": {
+      "Lung Adenocarcinoma": 57,
+      "Lung Squamous Cell Carcinoma": 17,
+      "Large Cell Lung Carcinoma": 13,
+      "Non-Small Cell Lung Cancer": 8,
+      "Lung Adenosquamous Carcinoma": 4,
+      "Giant Cell Carcinoma of the Lung": 1,
+      "Mucoepidermoid Carcinoma of the Lung": 1
+    },
+    "output_csv": "C:\\mmdrp_exp\\results\\19_ctrpv2_depmap26q1_no_lds_alpha08_20e\\nsclc_cell_lines_depmap26q1_ctrpv2_drkg_matched.csv"
+  },
+  "drkg_lung_cancer_1hop_subgraph": {
+    "seed_genes": [
+      "Gene::1956",
+      "Gene::3845",
+      "Gene::238",
+      "Gene::6098",
+      "Gene::673",
+      "Gene::4233",
+      "Gene::5979",
+      "Gene::2064"
+    ],
+    "nodes": 5040,
+    "triples": 670797,
+    "relations": 96,
+    "entity_type_counts": {
+      "Anatomy": 80,
+      "Biological Process": 744,
+      "Cellular Component": 65,
+      "Compound": 771,
+      "Disease": 281,
+      "Gene": 2875,
+      "Molecular Function": 44,
+      "Pathway": 180
+    },
+    "hops": 1,
+    "include_induced": true
+  }
+}

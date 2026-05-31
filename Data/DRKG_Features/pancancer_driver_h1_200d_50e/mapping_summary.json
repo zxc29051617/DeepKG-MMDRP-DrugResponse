@@ -1,0 +1,29 @@
+{
+  "drug_csv": "C:\\Users\\user\\Desktop\\\u91ab\u96fb\u6574\u5408fianl project\\MMDRP_DRKG_repro_package_20260527\\Data\\raw\\ctrpv2\\week1_final_drug_smiles_recovered_from_mapping.csv",
+  "drug_rows": 546,
+  "drug_rows_with_drugbank_id": 183,
+  "drug_rows_with_pubchem_cid": 460,
+  "drug_rows_with_smiles": 459,
+  "drugbank_mapping_rows": 185,
+  "embedding_dir": "outputs\\pancancer_driver_subgraph_h1\\transe_200d_50e",
+  "features_shape": [
+    112,
+    200
+  ],
+  "matched_drug_rows": 112,
+  "matched_feature_rows": 112,
+  "matched_unique_drkg_compounds": 112,
+  "matched_unique_drugbank_ids": 112,
+  "outputs": {
+    "drugbank_mapping_annotated": "outputs\\pancancer_driver_subgraph_h1\\drugbank_mmdrp_input_200d_50e\\drugbank_mapping_annotated.csv",
+    "drugbank_mapping_long": "outputs\\pancancer_driver_subgraph_h1\\drugbank_mmdrp_input_200d_50e\\drugbank_mapping_long.csv",
+    "mmdrp_feature_index": "outputs\\pancancer_driver_subgraph_h1\\drugbank_mmdrp_input_200d_50e\\mmdrp_drkg_transe_index.csv",
+    "mmdrp_feature_matrix": "outputs\\pancancer_driver_subgraph_h1\\drugbank_mmdrp_input_200d_50e\\mmdrp_drkg_transe_features.npy",
+    "mmdrp_merged_csv": "outputs\\pancancer_driver_subgraph_h1\\drugbank_mmdrp_input_200d_50e\\mmdrp_drkg_transe_merged.csv",
+    "pubchem_synonyms_cache": "outputs\\driver_gene_subgraph_h1\\smiles_match\\pubchem_synonyms_cache.json",
+    "unmatched_drugbank_ids": "outputs\\pancancer_driver_subgraph_h1\\drugbank_mmdrp_input_200d_50e\\drugbank_ids_not_in_drkg_embedding.csv"
+  },
+  "unique_drugbank_ids_from_pubchem": 185,
+  "unique_pubchem_cids": 460,
+  "unmatched_drugbank_mapping_rows": 73
+}

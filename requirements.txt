@@ -1,0 +1,11 @@
+numpy
+pandas
+tables
+scikit-learn
+torch
+torch-geometric
+rdkit
+optuna
+rdata
+requests
+matplotlib

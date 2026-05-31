@@ -1,0 +1,12 @@
+{
+  "lr": 0.0021642898458891,
+  "weight_decay": 1.1020244852224831e-06,
+  "dropout": 0.15772477848027838,
+  "gnn_hidden": 96,
+  "rank": 8,
+  "fusion_dim": 256,
+  "gnn_layers": 2,
+  "gnn_timesteps": 2,
+  "alpha": 0.6706857515753756,
+  "patience": 5
+}

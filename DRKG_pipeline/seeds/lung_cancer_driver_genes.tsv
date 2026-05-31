@@ -1,0 +1,9 @@
+input_symbol	official_symbol	ncbi_gene_id	drkg_entity	note
+EGFR	EGFR	1956	Gene::1956	
+KRAS	KRAS	3845	Gene::3845	
+ALK	ALK	238	Gene::238	
+ROS1	ROS1	6098	Gene::6098	
+BRAF	BRAF	673	Gene::673	
+MET	MET	4233	Gene::4233	
+RET	RET	5979	Gene::5979	
+HER2	ERBB2	2064	Gene::2064	HER2 is the common protein/clinical name; ERBB2 is the official gene symbol used for NCBI Gene ID 2064.

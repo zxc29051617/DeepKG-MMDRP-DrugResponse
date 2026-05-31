@@ -1,0 +1,6 @@
+model,history_available,reason
+B0,False,Per-drug median statistical baseline; no gradient-based training loss.
+B1,False,"ElasticNet final checkpoints/predictions are available, but per-epoch history was not saved in this package."
+B2,False,"B2 checkpoints/predictions are available, but per-epoch history CSV was not saved in this package."
+B3,True,History CSV files found under pancancer B3/B3+DRKG full-fold results.
+B3+DRKG,True,History CSV files found under pancancer B3/B3+DRKG full-fold results.

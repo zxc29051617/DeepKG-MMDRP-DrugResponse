@@ -1,0 +1,102 @@
+depmap_id,cell_line_display_name,lineage_1,lineage_2,lineage_3
+ACH-000681,A549,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000603,BEN,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000826,CAL12T,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000511,CALU1,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000392,CALU3,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000264,CALU6,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000867,CHAGOK1,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000161,CORL105,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000925,DV90,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000563,EBC1,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000706,EKVX,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000585,EPLC272H,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000578,HCC1171,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000868,HCC1195,Lung,Non-Small Cell Lung Cancer,Lung Adenosquamous Carcinoma
+ACH-000891,HCC1438,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000878,HCC15,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000712,HCC1833,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000314,HCC2108,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000731,HCC2279,Lung,Non-Small Cell Lung Cancer,Lung Adenosquamous Carcinoma
+ACH-000150,HCC2935,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000840,HCC366,Lung,Non-Small Cell Lung Cancer,Lung Adenosquamous Carcinoma
+ACH-000066,HCC4006,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000667,HCC44,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000562,HCC78,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000012,HCC827,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000454,HCC95,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000861,HOP62,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000825,HOP92,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000672,IALM,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000858,KNS62,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000705,LC1F,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000627,LCLC103H,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000596,LCLC97TM1,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000769,LK2,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000176,LOUNH91,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000438,LU65,Lung,Non-Small Cell Lung Cancer,Giant Cell Carcinoma of the Lung
+ACH-000390,LUDLU1,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000787,LXF289,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000980,NCIH1155,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000510,NCIH1299,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000666,NCIH1355,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000845,NCIH1373,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000737,NCIH1385,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000327,NCIH1395,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000852,NCIH1435,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000892,NCIH1563,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000869,NCIH1568,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000916,NCIH1573,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000015,NCIH1581,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000744,NCIH1623,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000035,NCIH1650,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000893,NCIH1651,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000448,NCIH1666,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000021,NCIH1693,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000747,NCIH1703,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000675,NCIH1734,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000282,NCIH1755,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000496,NCIH1792,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000888,NCIH1793,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000733,NCIH1838,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000894,NCIH1869,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000434,NCIH1915,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000414,NCIH1944,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000587,NCIH1975,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000886,NCIH2009,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000781,NCIH2023,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000521,NCIH2030,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000451,NCIH2085,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000841,NCIH2087,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000904,NCIH2106,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000929,NCIH2110,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000311,NCIH2122,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000785,NCIH2126,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000481,NCIH2170,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000924,NCIH2172,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-000447,NCIH2228,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000718,NCIH2291,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000900,NCIH23,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000951,NCIH2342,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000121,NCIH2405,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000186,NCIH2444,Lung,Non-Small Cell Lung Cancer,Non-Small Cell Lung Cancer
+ACH-001075,NCIH292,Lung,Non-Small Cell Lung Cancer,Mucoepidermoid Carcinoma of the Lung
+ACH-000837,NCIH322,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000860,NCIH358,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000638,NCIH441,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000463,NCIH460,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000395,NCIH520,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000343,NCIH522,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000378,NCIH647,Lung,Non-Small Cell Lung Cancer,Lung Adenosquamous Carcinoma
+ACH-000945,NCIH650,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000853,NCIH661,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000789,NCIH810,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma
+ACH-000416,NCIH838,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000030,PC14,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000791,RERFLCAD1,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000774,RERFLCAD2,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000062,RERFLCMS,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000665,SKMES1,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000553,SQ1,Lung,Non-Small Cell Lung Cancer,Lung Squamous Cell Carcinoma
+ACH-000677,SW1573,Lung,Non-Small Cell Lung Cancer,Lung Adenocarcinoma
+ACH-000813,T3M10,Lung,Non-Small Cell Lung Cancer,Large Cell Lung Carcinoma

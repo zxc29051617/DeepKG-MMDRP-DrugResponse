@@ -1,0 +1,15 @@
+{
+  "prediction_rows": 594810,
+  "prediction_files": 75,
+  "overall_rows": 594810,
+  "nsclc_rows": 77925,
+  "nsclc_cell_lines": 101,
+  "nsclc_drugs": 84,
+  "outputs": [
+    "prediction_metrics_by_fold.csv",
+    "prediction_metrics_summary.csv",
+    "overall_summary.csv",
+    "nsclc_only_summary.csv",
+    "paired_prediction_stats.csv"
+  ]
+}

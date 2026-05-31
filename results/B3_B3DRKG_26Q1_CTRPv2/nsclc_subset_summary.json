@@ -1,0 +1,17 @@
+{
+  "definition": "lineage_2 == 'Non-Small Cell Lung Cancer' using DepMap 26Q1 metadata",
+  "all_lung_cell_lines_in_matched_data": 135,
+  "nsclc_cell_lines_in_matched_data": 101,
+  "nsclc_pairs_in_matched_data": 5195,
+  "drugs_in_nsclc_subset": 84,
+  "lineage_3_counts": {
+    "Lung Adenocarcinoma": 57,
+    "Lung Squamous Cell Carcinoma": 17,
+    "Large Cell Lung Carcinoma": 13,
+    "Non-Small Cell Lung Cancer": 8,
+    "Lung Adenosquamous Carcinoma": 4,
+    "Giant Cell Carcinoma of the Lung": 1,
+    "Mucoepidermoid Carcinoma of the Lung": 1
+  },
+  "output_csv": "C:\\mmdrp_exp\\results\\19_ctrpv2_depmap26q1_no_lds_alpha08_20e\\nsclc_cell_lines_depmap26q1_ctrpv2_drkg_matched.csv"
+}
