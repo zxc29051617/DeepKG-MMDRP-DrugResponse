@@ -1,25 +1,91 @@
-# MMDRP + DRKG Reproducible Package
+# Reproduction Guide
 
-這個資料夾是本次正式主線實驗的乾淨復現包：
+This repository contains the code, small feature files, summary tables, figures, and attribution outputs for the final pan-cancer MMDRP + DRKG experiment.
 
-```text
-DepMap 26Q1 gene expression
-+ CTRPv2 AAC / log2(IC50)
-+ DRKG 1-hop lung-cancer TransE 200d feature
-```
+Large raw datasets, official DRKG dumps, fold-level checkpoints, and full prediction tables are intentionally excluded from Git tracking. They must be restored separately before a full rerun.
 
-## 1. 資料來源
+## 1. Main Experiment
 
-### DRKG
-
-官方來源：
+Final reported setting:
 
 ```text
-https://github.com/gnn4dr/DRKG
-https://dgl-data.s3-us-west-2.amazonaws.com/dataset/DRKG/drkg.tar.gz
+Expression input: DepMap 26Q1 gene expression
+Drug response labels: CTRPv2 AAC and log2(IC50)
+Drug structure input: CTRPv2 SMILES
+KG input: DRKG TransE embeddings from a pan-cancer driver-gene subgraph
+DRKG seed genes: 20 pan-cancer driver genes
+DRKG traversal: 1-hop
+TransE embedding dimension: 200
+TransE epochs: 50
+Prediction models: B0, B1, B2, B3, B3+DRKG
+Prediction training: 3 seeds x 5 folds
+Split type: cell-line split
+Internal validation: 10% of training rows for early stopping
+Main model epoch budget: maximum 50 epochs with early stopping
+Multitask targets: AAC and log2(IC50)
+Multitask loss alpha: 0.8
+LDS: disabled
 ```
 
-本包使用的官方 DRKG 原始檔：
+The 20 pan-cancer DRKG seed genes are stored in:
+
+```text
+DRKG_pipeline/seeds/pancancer_driver_genes.tsv
+```
+
+Seed gene list:
+
+```text
+TP53, KRAS, PIK3CA, PTEN, APC, BRAF, EGFR, ERBB2,
+MYC, CDKN2A, RB1, NRAS, HRAS, SMAD4, CTNNB1,
+BRCA1, BRCA2, ARID1A, IDH1, IDH2
+```
+
+## 2. Repository Layout
+
+```text
+src/
+  prepare_depmap26q1_expression_hdf.py
+  prepare_ctrp_multitask_smiles_hdf.py
+  run_b0_b1_b2_baselines.py
+  run_attentivefp_multiseed_cv.py
+  run_attentivefp_multitask_drkg_optuna.py
+  summarize_nsclc_prediction_metrics.py
+
+analysis/
+  visualization/run_pancancer_visualization.py
+  attribution/run_pancancer_ig_attribution.py
+
+DRKG_pipeline/
+  scripts/extract_driver_gene_subgraph.py
+  scripts/train_transe.py
+  scripts/map_drugbank_to_drkg_embeddings.py
+  seeds/pancancer_driver_genes.tsv
+
+Data/DRKG_Features/
+  pancancer_driver_h1_200d_50e/
+
+results/
+  pancancer_50e_evaluation/
+  pancancer_visualization_figures/
+  pancancer_ig_attribution/
+
+config/
+  best_config.json
+```
+
+## 3. Required External Data
+
+These files are not tracked in GitHub because they are large.
+
+Required for full training reruns:
+
+```text
+Data/DRP_Training_Data/DepMap_26Q1_Expression.hdf
+Data/DRP_Training_Data/CTRP_AAC_IC50_SMILES.hdf
+```
+
+Required for rerunning the DRKG feature-generation pipeline:
 
 ```text
 DRKG_pipeline/official_data/drkg.tsv
@@ -27,182 +93,122 @@ DRKG_pipeline/official_data/entity2src.tsv
 DRKG_pipeline/official_data/relation_glossary.tsv
 DRKG_pipeline/official_data/embed/entities.tsv
 DRKG_pipeline/official_data/embed/relations.tsv
+Data/raw/ctrpv2/week1_final_drug_smiles_recovered_from_mapping.csv
 ```
 
-### DepMap 26Q1 Expression
-
-來源：
+Source notes:
 
 ```text
-DepMap Portal -> Custom Downloads -> Expression (Short-read) Public 26Q1
+DepMap 26Q1 expression:
+  DepMap Portal -> Custom Downloads -> Expression, Public 26Q1
+
+CTRPv2:
+  PharmacoGx::downloadPSet("CTRPv2_2015")
+
+DRKG:
+  https://github.com/gnn4dr/DRKG
+  https://dgl-data.s3-us-west-2.amazonaws.com/dataset/DRKG/drkg.tar.gz
 ```
 
-本包原始檔：
-
-```text
-Data/raw/depmap_26q1/DepMap_26Q1_Expression_custom.csv
-```
-
-MMDRP 實際讀取的檔案：
-
-```text
-Data/DRP_Training_Data/DepMap_26Q1_Expression.hdf
-Data/DRP_Training_Data/DepMap_26Q1_Expression.csv
-```
-
-### CTRPv2
-
-來源：
-
-```text
-PharmacoGx::downloadPSet("CTRPv2_2015")
-```
-
-本包原始檔：
-
-```text
-Data/raw/ctrpv2/CTRPv2.rds
-```
-
-MMDRP 實際讀取的檔案：
-
-```text
-Data/DRP_Training_Data/CTRP_AAC_IC50_SMILES.hdf
-Data/DRP_Training_Data/CTRP_AAC_IC50_SMILES.csv
-```
-
-## 2. 資料夾結構
-
-```text
-Data/
-  DRP_Training_Data/
-    CTRP_AAC_IC50_SMILES.hdf
-    DepMap_26Q1_Expression.hdf
-  DRKG_Features/
-    driver_gene_h1_200d_50e/
-      mmdrp_drkg_transe_features.npy
-      mmdrp_drkg_transe_index.csv
-  raw/
-    ctrpv2/
-    depmap_26q1/
-
-DRKG_pipeline/
-  official_data/
-  seeds/
-  scripts/
-  outputs/
-
-src/
-  run_attentivefp_multiseed_cv.py
-  run_b0_b1_b2_baselines.py
-  run_attentivefp_multitask_drkg_optuna.py
-  prepare_ctrp_multitask_smiles_hdf.py
-  prepare_depmap26q1_expression_hdf.py
-
-config/
-  best_config.json
-
-results/
-  B3_B3DRKG_26Q1_CTRPv2/
-  B0_B1_B2_26Q1_CTRPv2/
-```
-
-`config/best_config.json` 是 B3/B3+DRKG 使用的 AttentiveFP/LMF 超參數設定，來自前一步 Optuna 搜尋結果。`run_all.ps1` 會明確讀取這份檔案。
-
-## 3. 最快復現方式
-
-在 PowerShell 執行：
+## 4. Install Dependencies
 
 ```powershell
-cd "C:\Users\user\Desktop\醫電整合fianl project\MMDRP_DRKG_repro_package_20260527"
-.\run_all.ps1
+pip install -r requirements.txt
 ```
 
-如果 HDF5 或 Python 對中文路徑有問題，請先把整個資料夾複製到純英文路徑，例如：
+For HDF5-heavy commands on Windows, use an ASCII-only path such as:
 
 ```text
-C:\MMDRP_DRKG_repro_package_20260527
+C:\MMDRP_DRKG_repro_package_20260531
 ```
 
-再執行：
+This avoids PyTables/HDF5 path issues with non-ASCII folder names.
+
+## 5. Rerun the Pan-Cancer Prediction Experiment
+
+After restoring the required HDF5 files, run:
 
 ```powershell
-cd "C:\MMDRP_DRKG_repro_package_20260527"
-.\run_all.ps1
+.\run_pancancer_all.ps1
 ```
 
-## 4. 目前已完成的正式結果
-
-正式主線資料：
+This runs:
 
 ```text
-DepMap 26Q1 + CTRPv2 AAC/log2(IC50) + DRKG 200d
-3 seeds x 5-fold cell-line split
-50 epochs
-alpha = 0.8
-no LDS
+B3 and B3+DRKG:
+  src/run_attentivefp_multiseed_cv.py
+
+B0, B1, and B2:
+  src/run_b0_b1_b2_baselines.py
+
+Overall and NSCLC-only summaries:
+  src/summarize_nsclc_prediction_metrics.py
 ```
 
-目前 50 epochs 結果摘要：
-
-| Model | AAC RMSE | AAC Pearson | log2IC50 RMSE | log2IC50 Pearson | Combined RMSE |
-|---|---:|---:|---:|---:|---:|
-| B0 | 0.1185 | 0.7571 | 2.5613 | 0.7519 | 0.8513 |
-| B1 | 0.1157 | 0.7673 | 2.5207 | 0.7621 | 0.8372 |
-| B2 | 0.1056 | 0.8098 | 2.3328 | 0.7982 | 0.7738 |
-| B3 | 0.1054 | 0.8123 | 2.3555 | 0.7954 | 0.7805 |
-| B3+DRKG | 0.1043 | 0.8166 | 2.3328 | 0.7990 | 0.7728 |
-
-NSCLC-only 主要結果：
-
-| Model | AAC RMSE | AAC Pearson | log2IC50 RMSE | log2IC50 Pearson | Combined RMSE |
-|---|---:|---:|---:|---:|---:|
-| B0 | 0.1120 | 0.7440 | 2.5015 | 0.7488 | 0.8289 |
-| B1 | 0.1168 | 0.7134 | 2.5790 | 0.7284 | 0.8554 |
-| B2 | 0.1108 | 0.7501 | 2.4309 | 0.7627 | 0.8068 |
-| B3 | 0.1107 | 0.7530 | 2.4591 | 0.7592 | 0.8152 |
-| B3+DRKG | 0.1080 | 0.7642 | 2.4001 | 0.7701 | 0.7956 |
-
-簡短結論：
+Rerun outputs are written to:
 
 ```text
-B3+DRKG 在 NSCLC-only evaluation 中為最佳模型，
-並且在 overall pan-cancer evaluation 中也有最佳 AAC RMSE、AAC Pearson 與 combined RMSE。
-因此目前可主張：以 NSCLC driver gene 子圖訓練出的 DRKG embedding
-作為第三模態，可以改善 MMDRP 在肺癌細胞株評估上的藥物反應預測。
+results/reproduced_pancancer_B3_B3DRKG_26Q1_CTRPv2_50e/
+results/reproduced_pancancer_B0_B1_B2_26Q1_CTRPv2_50e/
+results/reproduced_pancancer_50e_evaluation/
 ```
 
-## 5. 從官方 DRKG 重新產生 KG feature
+## 6. Rerun the Pan-Cancer DRKG Pipeline
 
-如果要從官方 DRKG raw data 重建 DRKG feature，執行：
+After restoring official DRKG files and the drug mapping CSV, run:
 
 ```powershell
 .\run_drkg_pipeline.ps1
 ```
 
-這會重跑：
+Pipeline:
 
 ```text
-official drkg.tsv
--> 8 個 NSCLC driver genes
--> 1-hop lung-cancer subgraph
+official DRKG
+-> 20 pan-cancer driver genes
+-> 1-hop driver-gene subgraph
 -> TransE 200d / 50 epochs
--> DrugBank mapping
--> MMDRP DRKG feature matrix
+-> DrugBank-to-DRKG compound mapping
+-> MMDRP-ready DRKG feature matrix
 ```
 
-注意：TransE 重訓會花時間。若只是要重跑 MMDRP，直接使用本包已整理好的：
+Rerun outputs are written to:
 
 ```text
-Data/DRKG_Features/driver_gene_h1_200d_50e/
+DRKG_pipeline/outputs/reproduced_pancancer_driver_subgraph_h1/
+Data/DRKG_Features/reproduced_pancancer_driver_h1_200d_50e/
 ```
 
-## 6. 從 raw data 重新產生 MMDRP processed data
+## 7. Generate Figures and Attribution Outputs
 
-通常不需要重跑，因為本包已經放好 `.hdf`。如果要從 raw data 重建：
+Generate result figures:
 
 ```powershell
-$env:MMDRP_ROOT = (Get-Location).Path
-python .\src\prepare_depmap26q1_expression_hdf.py
-python .\src\prepare_ctrp_multitask_smiles_hdf.py
+python analysis/visualization/run_pancancer_visualization.py
 ```
+
+Run Integrated Gradients attribution:
+
+```powershell
+python analysis/attribution/run_pancancer_ig_attribution.py
+```
+
+Default outputs:
+
+```text
+results/pancancer_visualization_figures/
+results/pancancer_ig_attribution/
+```
+
+## 8. Final Reported Results
+
+Main result files:
+
+```text
+LATEST_PANCANCER_50E_RESULTS.md
+LATEST_PANCANCER_50E_MODEL_COMPARISON.csv
+results/pancancer_50e_evaluation/overall_summary.csv
+results/pancancer_50e_evaluation/nsclc_only_summary.csv
+```
+
+The GitHub repository includes summary tables and figures, but not the large fold-level checkpoints or full prediction CSV files.

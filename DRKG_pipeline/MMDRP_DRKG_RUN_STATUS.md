@@ -1,51 +1,60 @@
-# MMDRP + DRKG run status
+# DRKG Pipeline Status
 
-## Current DRKG output
+The current DRKG pipeline used by the final experiment is pan-cancer oriented.
 
-The DRKG side is ready to be used as the MMDRP third modality.
+## Current Main Output
 
-- Main feature matrix:
-  - `outputs/driver_gene_subgraph_h1/drugbank_mmdrp_input_200d_50e/mmdrp_drkg_transe_features.npy`
-  - shape: `(104, 200)`
-- Row index / mapping table:
-  - `outputs/driver_gene_subgraph_h1/drugbank_mmdrp_input_200d_50e/mmdrp_drkg_transe_index.csv`
-- Human-readable merged table:
-  - `outputs/driver_gene_subgraph_h1/drugbank_mmdrp_input_200d_50e/mmdrp_drkg_transe_merged.csv`
+The MMDRP-side feature folder is:
 
-This output was built from the 1-hop lung-cancer driver-gene DRKG subgraph and TransE 200-dimensional embeddings trained for 50 epochs.
+```text
+Data/DRKG_Features/pancancer_driver_h1_200d_50e/
+```
 
-## MMDRP run blocker
+Important files:
 
-MMDRP cannot be run yet on this machine because the cloned MMDRP repository does not include the required preprocessed training data.
+```text
+mmdrp_drkg_transe_features.npy
+mmdrp_drkg_transe_index.csv
+mmdrp_drkg_transe_merged.csv
+mapping_summary.json
+```
 
-The missing training data directory is expected to contain files such as:
+## Pan-Cancer DRKG Construction
 
-- `CTRP_AAC_MORGAN.hdf` or `CTRP_AAC_MORGAN_512.hdf`
-- `DepMap_21Q2_Expression.hdf`
-- optionally `DepMap_21Q2_CopyNumber.hdf`, `DepMap_21Q2_Mutations_by_Cell.hdf`, etc.
-- pretrained autoencoder checkpoints under `optimal_autoencoders/` if using the original response-only MMDRP pipeline
+Seed file:
 
-The current cloned repo only contains code plus old config/result folders. It does not contain the actual CTRPv2/DepMap training HDF files.
+```text
+DRKG_pipeline/seeds/pancancer_driver_genes.tsv
+```
 
-The Python environment is also missing MMDRP dependencies:
+Seed genes:
 
-- `ray`
-- `torch_geometric`
-- `rdkit`
+```text
+TP53, KRAS, PIK3CA, PTEN, APC, BRAF, EGFR, ERBB2,
+MYC, CDKN2A, RB1, NRAS, HRAS, SMAD4, CTNNB1,
+BRCA1, BRCA2, ARID1A, IDH1, IDH2
+```
 
-## Intended comparison
+Subgraph and embedding settings:
 
-Once the MMDRP training data and dependencies are available, run the same train/validation/test split for:
+```text
+Traversal: 1-hop
+Nodes: 11,067
+Triples: 1,766,128
+Relations: 97
+Embedding model: TransE
+Embedding dimension: 200
+TransE epochs: 50
+MMDRP KG feature shape: 112 x 200
+```
 
-1. MMDRP-base:
-   - original MMDRP inputs, for example drug Morgan fingerprint + gene expression
-2. MMDRP+DRKG:
-   - original MMDRP inputs + `mmdrp_drkg_transe_features.npy`
-   - align each row by `cpd_name` / DrugBank / DRKG compound entity using `mmdrp_drkg_transe_index.csv`
-3. Compare:
-   - MAE
-   - RMSE
-   - Pearson correlation
-   - Spearman correlation
+## MMDRP Usage
 
-The comparison is only valid if both models use the same cell-line/drug samples and the same split.
+The pan-cancer MMDRP scripts load:
+
+```text
+Data/DRKG_Features/pancancer_driver_h1_200d_50e/mmdrp_drkg_transe_features.npy
+Data/DRKG_Features/pancancer_driver_h1_200d_50e/mmdrp_drkg_transe_index.csv
+```
+
+These features are used by B3+DRKG as the third modality, together with DepMap expression and drug molecular graph features.

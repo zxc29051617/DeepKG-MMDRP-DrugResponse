@@ -45,17 +45,17 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train TransE on a DRKG subgraph.")
     parser.add_argument(
         "--subgraph-dir",
-        default="outputs/lung_cancer_subgraph_h1",
-        help="Directory created by extract_lung_cancer_subgraph.py.",
+        default="outputs/pancancer_driver_subgraph_h1",
+        help="Directory created by extract_driver_gene_subgraph.py.",
     )
     parser.add_argument(
         "--out-dir",
         default=None,
         help="Output directory. Defaults to <subgraph-dir>/transe.",
     )
-    parser.add_argument("--dim", type=int, default=400, help="Embedding dimension.")
-    parser.add_argument("--epochs", type=int, default=200, help="Training epochs.")
-    parser.add_argument("--batch-size", type=int, default=4096, help="Batch size.")
+    parser.add_argument("--dim", type=int, default=200, help="Embedding dimension.")
+    parser.add_argument("--epochs", type=int, default=50, help="Training epochs.")
+    parser.add_argument("--batch-size", type=int, default=8192, help="Batch size.")
     parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate.")
     parser.add_argument("--margin", type=float, default=1.0, help="Margin ranking loss.")
     parser.add_argument(

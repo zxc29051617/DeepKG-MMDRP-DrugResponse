@@ -1,6 +1,6 @@
 # Pan-Cancer DRKG Pipeline
 
-This folder contains the pan-cancer DRKG feature-generation outputs used by the final MMDRP pan-cancer experiment.
+This folder contains the pan-cancer DRKG feature-generation scripts and seed definitions used by the final MMDRP pan-cancer experiment. Large official DRKG files and regenerated subgraph outputs are ignored by Git and must be restored or regenerated for a full rerun.
 
 ## Seed Genes
 
@@ -14,9 +14,9 @@ TP53, KRAS, PIK3CA, PTEN, APC, BRAF, EGFR, ERBB2, MYC, CDKN2A, RB1, NRAS, HRAS, 
 
 ## Output Folder
 
-Main output:
+Main local output:
 
-- `outputs/pancancer_driver_subgraph_h1/`
+- `outputs/pancancer_driver_subgraph_h1/` (local package only; ignored by GitHub)
 
 Important files:
 

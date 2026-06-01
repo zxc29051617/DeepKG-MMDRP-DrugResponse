@@ -15,12 +15,12 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Inspect TransE embedding results.")
     parser.add_argument(
         "--embedding-dir",
-        default="outputs/driver_gene_subgraph_h1/transe",
+        default="outputs/pancancer_driver_subgraph_h1/transe_200d_50e",
         help="Directory containing entity_embeddings.npy and node_embedding_index.tsv.",
     )
     parser.add_argument(
         "--seed-file",
-        default="seeds/lung_cancer_driver_genes.tsv",
+        default="seeds/pancancer_driver_genes.tsv",
         help="Seed TSV used by the extraction step.",
     )
     parser.add_argument(

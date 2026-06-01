@@ -1,10 +1,10 @@
 # Attribution / IG Files
 
-This package includes full pan-cancer fold outputs for downstream Integrated Gradients (IG) or attribution analysis.
+This repository includes the attribution scripts and default attribution outputs. The local full package can also include full pan-cancer fold outputs for downstream Integrated Gradients (IG) or attribution analysis, but large checkpoints and fold-level prediction files are intentionally excluded from GitHub.
 
 ## Main Fold Outputs
 
-- `results/pancancer_B3_B3DRKG_26Q1_CTRPv2_50e_full_folds/`
+- `results/pancancer_B3_B3DRKG_26Q1_CTRPv2_50e_full_folds/` (local package only; ignored by Git)
   - 15 `split_indices.npz`
   - 30 PyTorch model checkpoints:
     - `cv_base.pt`
@@ -12,7 +12,7 @@ This package includes full pan-cancer fold outputs for downstream Integrated Gra
   - 30 training histories
   - 30 test prediction CSV files
 
-- `results/pancancer_B0_B1_B2_26Q1_CTRPv2_50e_full_folds/`
+- `results/pancancer_B0_B1_B2_26Q1_CTRPv2_50e_full_folds/` (local package only; ignored by Git)
   - 15 `split_indices.npz`
   - 15 B2 PyTorch model checkpoints:
     - `B2_mmdrp_base.pt`

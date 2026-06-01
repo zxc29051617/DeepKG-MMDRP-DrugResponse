@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Extract a lung-cancer-focused subgraph from DRKG."""
+"""Extract a driver-gene-focused subgraph from DRKG."""
 
 from __future__ import annotations
 
@@ -13,10 +13,10 @@ from pathlib import Path
 
 DEFAULT_SEED_ROWS = [
     {
-        "input_symbol": "EGFR",
-        "official_symbol": "EGFR",
-        "ncbi_gene_id": "1956",
-        "seed": "Gene::1956",
+        "input_symbol": "TP53",
+        "official_symbol": "TP53",
+        "ncbi_gene_id": "7157",
+        "seed": "Gene::7157",
     },
     {
         "input_symbol": "KRAS",
@@ -25,16 +25,22 @@ DEFAULT_SEED_ROWS = [
         "seed": "Gene::3845",
     },
     {
-        "input_symbol": "ALK",
-        "official_symbol": "ALK",
-        "ncbi_gene_id": "238",
-        "seed": "Gene::238",
+        "input_symbol": "PIK3CA",
+        "official_symbol": "PIK3CA",
+        "ncbi_gene_id": "5290",
+        "seed": "Gene::5290",
     },
     {
-        "input_symbol": "ROS1",
-        "official_symbol": "ROS1",
-        "ncbi_gene_id": "6098",
-        "seed": "Gene::6098",
+        "input_symbol": "PTEN",
+        "official_symbol": "PTEN",
+        "ncbi_gene_id": "5728",
+        "seed": "Gene::5728",
+    },
+    {
+        "input_symbol": "APC",
+        "official_symbol": "APC",
+        "ncbi_gene_id": "324",
+        "seed": "Gene::324",
     },
     {
         "input_symbol": "BRAF",
@@ -43,29 +49,95 @@ DEFAULT_SEED_ROWS = [
         "seed": "Gene::673",
     },
     {
-        "input_symbol": "MET",
-        "official_symbol": "MET",
-        "ncbi_gene_id": "4233",
-        "seed": "Gene::4233",
+        "input_symbol": "EGFR",
+        "official_symbol": "EGFR",
+        "ncbi_gene_id": "1956",
+        "seed": "Gene::1956",
     },
     {
-        "input_symbol": "RET",
-        "official_symbol": "RET",
-        "ncbi_gene_id": "5979",
-        "seed": "Gene::5979",
-    },
-    {
-        "input_symbol": "HER2",
+        "input_symbol": "ERBB2",
         "official_symbol": "ERBB2",
         "ncbi_gene_id": "2064",
         "seed": "Gene::2064",
+    },
+    {
+        "input_symbol": "MYC",
+        "official_symbol": "MYC",
+        "ncbi_gene_id": "4609",
+        "seed": "Gene::4609",
+    },
+    {
+        "input_symbol": "CDKN2A",
+        "official_symbol": "CDKN2A",
+        "ncbi_gene_id": "1029",
+        "seed": "Gene::1029",
+    },
+    {
+        "input_symbol": "RB1",
+        "official_symbol": "RB1",
+        "ncbi_gene_id": "5925",
+        "seed": "Gene::5925",
+    },
+    {
+        "input_symbol": "NRAS",
+        "official_symbol": "NRAS",
+        "ncbi_gene_id": "4893",
+        "seed": "Gene::4893",
+    },
+    {
+        "input_symbol": "HRAS",
+        "official_symbol": "HRAS",
+        "ncbi_gene_id": "3265",
+        "seed": "Gene::3265",
+    },
+    {
+        "input_symbol": "SMAD4",
+        "official_symbol": "SMAD4",
+        "ncbi_gene_id": "4089",
+        "seed": "Gene::4089",
+    },
+    {
+        "input_symbol": "CTNNB1",
+        "official_symbol": "CTNNB1",
+        "ncbi_gene_id": "1499",
+        "seed": "Gene::1499",
+    },
+    {
+        "input_symbol": "BRCA1",
+        "official_symbol": "BRCA1",
+        "ncbi_gene_id": "672",
+        "seed": "Gene::672",
+    },
+    {
+        "input_symbol": "BRCA2",
+        "official_symbol": "BRCA2",
+        "ncbi_gene_id": "675",
+        "seed": "Gene::675",
+    },
+    {
+        "input_symbol": "ARID1A",
+        "official_symbol": "ARID1A",
+        "ncbi_gene_id": "8289",
+        "seed": "Gene::8289",
+    },
+    {
+        "input_symbol": "IDH1",
+        "official_symbol": "IDH1",
+        "ncbi_gene_id": "3417",
+        "seed": "Gene::3417",
+    },
+    {
+        "input_symbol": "IDH2",
+        "official_symbol": "IDH2",
+        "ncbi_gene_id": "3418",
+        "seed": "Gene::3418",
     },
 ]
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Extract a lung-cancer subgraph from DRKG triples."
+        description="Extract a driver-gene subgraph from DRKG triples."
     )
     parser.add_argument("--drkg", default="drkg.tsv", help="Path to drkg.tsv.")
     parser.add_argument(
@@ -85,7 +157,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--out",
-        default="outputs/lung_cancer_subgraph_h1",
+        default="outputs/pancancer_driver_subgraph_h1",
         help="Output directory.",
     )
     parser.add_argument(

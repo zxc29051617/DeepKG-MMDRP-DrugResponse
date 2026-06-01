@@ -38,4 +38,4 @@ TP53, KRAS, PIK3CA, PTEN, APC, BRAF, EGFR, ERBB2, MYC, CDKN2A, RB1, NRAS, HRAS, 
 
 B3+PanCancer-DRKG is the best model in the overall pan-cancer evaluation and also remains best in the NSCLC-only subset. Compared with B3 base, B3+DRKG improves overall combined RMSE by 0.0101 and NSCLC-only combined RMSE by 0.0122.
 
-The pan-cancer DRKG result is the appropriate result to cite when discussing overall pan-cancer performance. The original 8-gene NSCLC DRKG result remains the more disease-specific lung-cancer-oriented experiment.
+The pan-cancer DRKG result is the final result to cite for this repository. NSCLC-only metrics are reported as a disease-subset evaluation using the same pan-cancer-trained fold predictions.
