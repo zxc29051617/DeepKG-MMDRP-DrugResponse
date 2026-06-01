@@ -41,7 +41,40 @@ MYC, CDKN2A, RB1, NRAS, HRAS, SMAD4, CTNNB1,
 BRCA1, BRCA2, ARID1A, IDH1, IDH2
 ```
 
-## 2. Repository Layout
+## 2. Data Alignment Pipeline
+
+The final model input is the intersection of CTRPv2 response labels, DepMap expression profiles, and DRKG compound embeddings.
+
+```text
+CTRPv2 response table
+  columns: cpd_name, ccl_name, primary_disease, area_above_curve, ic50, log2_ic50, cpd_smiles
+  226,455 cell line-drug pairs
+  544 drugs
+  791 cell lines
+
+-> filter to log2_ic50 in [-15, 15]
+  220,795 cell line-drug pairs
+
+-> align with DepMap 26Q1 expression by normalized ccl_name / stripped_cell_line_name
+  213,843 cell line-drug pairs
+  544 drugs
+  767 cell lines
+
+-> align with DRKG compound embeddings by normalized cpd_name
+  44,049 final cell line-drug pairs
+  92 drugs
+  766 cell lines
+```
+
+The code may load the DRKG mapping before the DepMap expression matrix, but the final dataset is the same intersection:
+
+```text
+CTRPv2 ∩ DepMap 26Q1 expression ∩ DRKG compound embedding
+```
+
+The 20 pan-cancer seed genes are used only for DRKG subgraph construction and TransE training. They do not directly select CTRPv2 drugs. DrugBank ID is used only as an intermediate compound mapping key; the prediction model receives the 200-dimensional DRKG embedding vector.
+
+## 3. Repository Layout
 
 ```text
 src/
@@ -74,7 +107,7 @@ config/
   best_config.json
 ```
 
-## 3. Required External Data
+## 4. Required External Data
 
 These files are not tracked in GitHub because they are large.
 
@@ -110,7 +143,7 @@ DRKG:
   https://dgl-data.s3-us-west-2.amazonaws.com/dataset/DRKG/drkg.tar.gz
 ```
 
-## 4. Install Dependencies
+## 5. Install Dependencies
 
 ```powershell
 pip install -r requirements.txt
@@ -124,7 +157,7 @@ C:\MMDRP_DRKG_repro_package_20260531
 
 This avoids PyTables/HDF5 path issues with non-ASCII folder names.
 
-## 5. Rerun the Pan-Cancer Prediction Experiment
+## 6. Rerun the Pan-Cancer Prediction Experiment
 
 After restoring the required HDF5 files, run:
 
@@ -153,7 +186,7 @@ results/reproduced_pancancer_B0_B1_B2_26Q1_CTRPv2_50e/
 results/reproduced_pancancer_50e_evaluation/
 ```
 
-## 6. Rerun the Pan-Cancer DRKG Pipeline
+## 7. Rerun the Pan-Cancer DRKG Pipeline
 
 After restoring official DRKG files and the drug mapping CSV, run:
 
@@ -168,7 +201,7 @@ official DRKG
 -> 20 pan-cancer driver genes
 -> 1-hop driver-gene subgraph
 -> TransE 200d / 50 epochs
--> DrugBank-to-DRKG compound mapping
+-> CTRPv2 drug-to-DRKG compound mapping
 -> MMDRP-ready DRKG feature matrix
 ```
 
@@ -179,7 +212,7 @@ DRKG_pipeline/outputs/reproduced_pancancer_driver_subgraph_h1/
 Data/DRKG_Features/reproduced_pancancer_driver_h1_200d_50e/
 ```
 
-## 7. Generate Figures and Attribution Outputs
+## 8. Generate Figures and Attribution Outputs
 
 Generate result figures:
 
@@ -200,7 +233,7 @@ results/pancancer_visualization_figures/
 results/pancancer_ig_attribution/
 ```
 
-## 8. Final Reported Results
+## 9. Final Reported Results
 
 Main result files:
 

@@ -116,6 +116,36 @@ MYC, CDKN2A, RB1, NRAS, HRAS, SMAD4, CTNNB1,
 BRCA1, BRCA2, ARID1A, IDH1, IDH2
 ```
 
+## Data Alignment Pipeline
+
+The prediction dataset is built as an intersection of CTRPv2 response labels, DepMap expression profiles, and DRKG compound embeddings.
+
+```text
+CTRPv2 drug response
+  AAC / log2(IC50) labels
+  cpd_name, ccl_name, cpd_smiles
+  226,455 cell line-drug pairs
+  544 drugs
+  791 cell lines
+
+-> log2(IC50) range filter [-15, 15]
+  220,795 cell line-drug pairs
+
+-> match DepMap 26Q1 expression by normalized cell-line name
+  213,843 cell line-drug pairs
+  544 drugs
+  767 cell lines
+
+-> match DRKG compound embedding by normalized drug name
+  44,049 final cell line-drug pairs
+  92 drugs
+  766 cell lines
+```
+
+The DRKG 20-gene seed list is used to construct the knowledge-graph subgraph and train TransE embeddings. It is not used to directly filter CTRPv2 drugs. A CTRPv2 drug enters B3+DRKG only if it has a valid response label, a SMILES string, a matched DepMap cell-line expression profile, and a matched DRKG compound embedding.
+
+DrugBank ID is used only as an intermediate mapping key for linking CTRPv2 compounds to DRKG compound entities. The model input is the final 200-dimensional DRKG TransE vector, not the DrugBank ID itself.
+
 ## Final Results
 
 Overall held-out fold results, averaged over 15 seed-fold runs:
