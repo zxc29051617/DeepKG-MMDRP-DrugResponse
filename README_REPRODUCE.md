@@ -81,9 +81,10 @@ src/
   prepare_depmap26q1_expression_hdf.py
   prepare_ctrp_multitask_smiles_hdf.py
   run_b0_b1_b2_baselines.py
+  run_b3_b3drkg_pancancer.py
   run_attentivefp_multiseed_cv.py
   run_attentivefp_multitask_drkg_optuna.py
-  summarize_nsclc_prediction_metrics.py
+  summarize_prediction_metrics.py
 
 analysis/
   visualization/run_pancancer_visualization.py
@@ -169,13 +170,13 @@ This runs:
 
 ```text
 B3 and B3+DRKG:
-  src/run_attentivefp_multiseed_cv.py
+  src/run_b3_b3drkg_pancancer.py
 
 B0, B1, and B2:
   src/run_b0_b1_b2_baselines.py
 
 Overall and NSCLC-only summaries:
-  src/summarize_nsclc_prediction_metrics.py
+  src/summarize_prediction_metrics.py
 ```
 
 Rerun outputs are written to:

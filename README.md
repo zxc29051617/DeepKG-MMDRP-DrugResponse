@@ -218,6 +218,12 @@ Run the pan-cancer experiment pipeline:
 .\run_pancancer_all.ps1
 ```
 
+The B3/B3+DRKG training entrypoint used by that pipeline is:
+
+```text
+src/run_b3_b3drkg_pancancer.py
+```
+
 Run the DRKG pipeline:
 
 ```powershell

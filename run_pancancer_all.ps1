@@ -19,7 +19,7 @@ Write-Host "B3 best config: $BestConfig"
 
 Write-Host ""
 Write-Host "Running B3 base vs B3 + PanCancer-DRKG..."
-python (Join-Path $Root "src\run_attentivefp_multiseed_cv.py") `
+python (Join-Path $Root "src\run_b3_b3drkg_pancancer.py") `
   --expression-hdf $ExpressionHdf `
   --best-config $BestConfig `
   --drkg-dir $DrkgDir `
@@ -47,7 +47,7 @@ python (Join-Path $Root "src\run_b0_b1_b2_baselines.py") `
 
 Write-Host ""
 Write-Host "Summarizing overall and NSCLC-only metrics..."
-python (Join-Path $Root "src\summarize_nsclc_prediction_metrics.py") `
+python (Join-Path $Root "src\summarize_prediction_metrics.py") `
   --prediction-dirs $PredictionDirs `
   --out-dir $SummaryOut `
   --save-all-predictions
