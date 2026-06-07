@@ -18,6 +18,19 @@ Write-Host "Pan-cancer DRKG features: $DrkgDir"
 Write-Host "B3 best config: $BestConfig"
 
 Write-Host ""
+Write-Host "Running B0 / B1 / B2 on the same pan-cancer DRKG-matched drugs..."
+python (Join-Path $Root "src\run_b0_b1_b2_baselines.py") `
+  --expression-hdf $ExpressionHdf `
+  --drkg-dir $DrkgDir `
+  --seeds "42,43,44" `
+  --n-folds 5 `
+  --epochs 50 `
+  --b1-epochs 50 `
+  --batch-size 512 `
+  --models "B0,B1,B2" `
+  --out-dir $BaselineOut
+
+Write-Host ""
 Write-Host "Running B3 base vs B3 + PanCancer-DRKG..."
 python (Join-Path $Root "src\run_b3_b3drkg_pancancer.py") `
   --expression-hdf $ExpressionHdf `
@@ -31,19 +44,6 @@ python (Join-Path $Root "src\run_b3_b3drkg_pancancer.py") `
   --alphas 0.8 `
   --no-lds `
   --out-dir $B3Out
-
-Write-Host ""
-Write-Host "Running B0 / B1 / B2 on the same pan-cancer DRKG-matched drugs..."
-python (Join-Path $Root "src\run_b0_b1_b2_baselines.py") `
-  --expression-hdf $ExpressionHdf `
-  --drkg-dir $DrkgDir `
-  --seeds "42,43,44" `
-  --n-folds 5 `
-  --epochs 50 `
-  --b1-epochs 50 `
-  --batch-size 512 `
-  --models "B0,B1,B2" `
-  --out-dir $BaselineOut
 
 Write-Host ""
 Write-Host "Summarizing overall and NSCLC-only metrics..."
