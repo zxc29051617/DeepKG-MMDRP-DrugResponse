@@ -32,4 +32,4 @@ For reproducibility, place these files in the paths documented in `README_REPROD
 
 ## License Note
 
-Because this package modifies and redistributes code derived from MMDRP, keep the original MMDRP MIT license notice in the repository. If this repository is published publicly, include a `LICENSE` file compatible with the original MIT license and cite the original MMDRP repository in the README.
+This package modifies and redistributes code derived from MMDRP. The original MMDRP MIT license notice is kept in `LICENSE`.

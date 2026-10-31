@@ -85,6 +85,6 @@
     "definition": "lineage_2 == 'Non-Small Cell Lung Cancer' using DepMap 26Q1 metadata",
     "nsclc_cell_lines_in_matched_data": 101,
     "nsclc_pairs_in_matched_data": 5816,
-    "drugs_in_nsclc_subset": 92
+    "drugs_in_nsclc_subset": 91
   }
 }

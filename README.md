@@ -104,7 +104,7 @@ Embedding dimension: 200
 TransE epochs: 50
 Prediction training: 3 seeds x 5 folds
 Split type: cell-line split
-Internal validation: 10% of training rows for early stopping
+Internal validation: 10% of training cell lines for early stopping
 Main model epoch budget: maximum 50 epochs with early stopping
 LDS: disabled
 Multitask loss alpha: 0.8
@@ -144,7 +144,7 @@ CTRPv2 drug response
   766 cell lines
 ```
 
-The DRKG 20-gene seed list is used to construct the knowledge-graph subgraph and train TransE embeddings. It is not used to directly filter CTRPv2 drugs. A CTRPv2 drug enters B3+DRKG only if it has a valid response label, a SMILES string, a matched DepMap cell-line expression profile, and a matched DRKG compound embedding.
+The DRKG 20-gene seed list is used to construct the knowledge-graph subgraph and train TransE embeddings. Only compounds inside this 1-hop subgraph get an embedding, so a CTRPv2 drug can only be kept if DRKG has at least one edge between it and a seed gene. A CTRPv2 drug enters B3+DRKG only if it has a valid response label, a SMILES string, a matched DepMap cell-line expression profile, and a matched DRKG compound embedding.
 
 DrugBank ID is used only as an intermediate mapping key for linking CTRPv2 compounds to DRKG compound entities. The model input is the final 200-dimensional DRKG TransE vector, not the DrugBank ID itself.
 
@@ -169,6 +169,8 @@ NSCLC-only held-out fold results, averaged over the NSCLC subset of the same hel
 | B2 | 0.1087 | 0.7750 | 2.3732 | 0.7735 | 0.7881 |
 | B3 | 0.1084 | 0.7754 | 2.3933 | 0.7696 | 0.7939 |
 | B3+DRKG | **0.1077** | **0.7793** | **2.3543** | **0.7786** | **0.7817** |
+
+Combined RMSE is 0.7 × AAC RMSE + 0.3 × log2(IC50) RMSE, computed on the original scales. The same score is used for early stopping. All five models use the same 44,049 pairs and the same cell-line splits.
 
 Detailed result files:
 
@@ -276,5 +278,11 @@ Major modifications in this repository include:
 - Adding B0/B1/B2/B3/B3+DRKG comparison experiments.
 - Adding pan-cancer and NSCLC-only evaluation.
 - Adding visualization and Integrated Gradients attribution scripts.
+
+Data sources:
+
+- DepMap 26Q1 Public expression (Broad Institute): https://depmap.org/portal/
+- CTRPv2 drug response (Broad Institute; Basu et al. 2013, Seashore-Ludlow et al. 2015, Rees et al. 2016), loaded with PharmacoGx.
+- DRKG: https://github.com/gnn4dr/DRKG (Apache-2.0). DRKG combines sources with their own licenses, some of them non-commercial (for example DrugBank, CC BY-NC 4.0). These terms also apply to the DRKG-derived files in `Data/DRKG_Features/`.
 
 See `NOTICE.md` and `LICENSE` for attribution and license details.

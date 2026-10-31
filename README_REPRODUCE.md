@@ -20,7 +20,7 @@ TransE epochs: 50
 Prediction models: B0, B1, B2, B3, B3+DRKG
 Prediction training: 3 seeds x 5 folds
 Split type: cell-line split
-Internal validation: 10% of training rows for early stopping
+Internal validation: 10% of training cell lines for early stopping
 Main model epoch budget: maximum 50 epochs with early stopping
 Multitask targets: AAC and log2(IC50)
 Multitask loss alpha: 0.8
@@ -72,7 +72,7 @@ The code may load the DRKG mapping before the DepMap expression matrix, but the 
 CTRPv2 ∩ DepMap 26Q1 expression ∩ DRKG compound embedding
 ```
 
-The 20 pan-cancer seed genes are used only for DRKG subgraph construction and TransE training. They do not directly select CTRPv2 drugs. DrugBank ID is used only as an intermediate compound mapping key; the prediction model receives the 200-dimensional DRKG embedding vector.
+The 20 pan-cancer seed genes are used for DRKG subgraph construction and TransE training. Only compounds inside this 1-hop subgraph get an embedding, so a CTRPv2 drug can only be kept if DRKG has at least one edge between it and a seed gene. DrugBank ID is used only as an intermediate compound mapping key; the prediction model receives the 200-dimensional DRKG embedding vector.
 
 ## 3. Repository Layout
 
@@ -117,6 +117,14 @@ Required for full training reruns:
 ```text
 Data/DRP_Training_Data/DepMap_26Q1_Expression.hdf
 Data/DRP_Training_Data/CTRP_AAC_IC50_SMILES.hdf
+Data/raw/depmap_latest_drug_screen/DepMap_26Q1_Expression_custom.csv
+```
+
+The DepMap CSV is also read during training to label NSCLC cell lines. The two HDF5 files are built from the raw downloads, DepMap first:
+
+```text
+src/prepare_depmap26q1_expression_hdf.py   reads Data/raw/depmap_latest_drug_screen/DepMap_26Q1_Expression_custom.csv
+src/prepare_ctrp_multitask_smiles_hdf.py   reads Data/raw/CTRPv2.rds
 ```
 
 Required for rerunning the DRKG feature-generation pipeline:
@@ -129,6 +137,8 @@ DRKG_pipeline/official_data/embed/entities.tsv
 DRKG_pipeline/official_data/embed/relations.tsv
 Data/raw/ctrpv2/week1_final_drug_smiles_recovered_from_mapping.csv
 ```
+
+The drug CSV has the columns `cpd_name`, `PubChem_CID`, and `SMILES`. The same 546 rows are kept in `Data/DRKG_Features/pancancer_driver_h1_200d_50e/drugbank_mapping_annotated.csv`.
 
 Source notes:
 

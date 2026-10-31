@@ -57,10 +57,10 @@ Important outputs:
 06_seed_fold_combined_rmse_line.png/.pdf
 07_seed_fold_combined_rmse_heatmap.png/.pdf
 08_b3drkg_delta_combined_rmse_by_fold.png/.pdf
-09_AAC_prediction_scatter.png/.pdf
-10_log2IC50_prediction_scatter.png/.pdf
-11_AAC_residual_boxplot.png/.pdf
-12_log2IC50_residual_boxplot.png/.pdf
+09_prediction_scatter_aac.png/.pdf
+10_prediction_scatter_log2ic50.png/.pdf
+11_residual_distribution_aac.png/.pdf
+12_residual_distribution_log2ic50.png/.pdf
 13_training_curve_valid_combined_rmse.png/.pdf
 14_training_curve_mean_train_loss.png/.pdf
 15_train_loss_each_seed_fold.png/.pdf

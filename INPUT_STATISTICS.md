@@ -48,4 +48,4 @@
 - Definition: `lineage_2 == 'Non-Small Cell Lung Cancer'` using DepMap 26Q1 metadata
 - NSCLC cell lines in matched data: 101
 - NSCLC pairs in matched data: 5,816
-- Drugs in NSCLC subset: 92
+- Drugs in NSCLC subset: 91
