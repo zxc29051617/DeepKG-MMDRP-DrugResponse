@@ -24,7 +24,7 @@ DATA_DIR = ROOT / "Data" / "DRP_Training_Data"
 DEFAULT_DRKG_DIR = Path(
     os.environ.get(
         "DRKG_FEATURE_DIR",
-        r"C:\drkg_exp\outputs\pancancer_driver_subgraph_h1\drugbank_mmdrp_input_200d_50e",
+        ROOT / "Data" / "DRKG_Features" / "pancancer_driver_h1_200d_50e",
     )
 )
 

@@ -3,9 +3,9 @@
   "seed": 42,
   "fold": 0,
   "model": "cv_plus_drkg",
-  "checkpoint": "C:\\MMDRP_DRKG_repro_package_20260531\\results\\pancancer_B3_B3DRKG_26Q1_CTRPv2_50e_full_folds\\seed42_fold0\\cv_plus_drkg.pt",
-  "drkg_dir": "C:\\MMDRP_DRKG_repro_package_20260531\\Data\\DRKG_Features\\pancancer_driver_h1_200d_50e",
-  "expression_hdf": "C:\\MMDRP_DRKG_repro_package_20260531\\Data\\DRP_Training_Data\\DepMap_26Q1_Expression.hdf",
+  "checkpoint": "results/pancancer_B3_B3DRKG_26Q1_CTRPv2_50e_full_folds/seed42_fold0/cv_plus_drkg.pt",
+  "drkg_dir": "Data/DRKG_Features/pancancer_driver_h1_200d_50e",
+  "expression_hdf": "Data/DRP_Training_Data/DepMap_26Q1_Expression.hdf",
   "sample_strategy": "random",
   "sample_count": 64,
   "steps": 32,
@@ -14,5 +14,5 @@
     "log2IC50"
   ],
   "device": "cpu",
-  "output_dir": "C:\\MMDRP_DRKG_repro_package_20260531\\results\\pancancer_ig_attribution"
+  "output_dir": "results/pancancer_ig_attribution"
 }

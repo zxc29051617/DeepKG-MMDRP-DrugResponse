@@ -10,7 +10,7 @@
   "nsclc_cell_lines": 101,
   "nsclc_pairs": 5816,
   "expression_dim": 19215,
-  "expression_hdf": "C:\\mmdrp_exp\\Data\\DRP_Training_Data\\DepMap_26Q1_Expression.hdf",
+  "expression_hdf": "Data/DRP_Training_Data/DepMap_26Q1_Expression.hdf",
   "kg_dim": 200,
   "targets": [
     "AAC",

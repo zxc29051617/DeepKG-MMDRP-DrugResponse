@@ -1,5 +1,5 @@
 {
-  "rds_path": "C:\\mmdrp_exp\\Data\\raw\\CTRPv2.rds",
+  "rds_path": "Data/raw/CTRPv2.rds",
   "rows_before_cell_line_merge": 253886,
   "rows_after_cell_line_merge": 226455,
   "rows_after_smiles_filter": 226455,

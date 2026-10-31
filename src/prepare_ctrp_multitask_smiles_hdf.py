@@ -155,7 +155,7 @@ def main():
     merged.to_csv(csv_out, index=False)
 
     summary = {
-        "rds_path": str(RDS_PATH),
+        "rds_path": RDS_PATH.relative_to(ROOT).as_posix(),
         "rows_before_cell_line_merge": int(before_cell_merge),
         "rows_after_cell_line_merge": int(before_smiles_filter),
         "rows_after_smiles_filter": int(len(merged)),

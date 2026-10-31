@@ -20,6 +20,14 @@ from run_attentivefp_multitask_drkg_optuna import (
 NSCLC_LABEL = "Non-Small Cell Lung Cancer"
 
 
+def repo_relative(path, root) -> str:
+    """Return path relative to the repository root when possible."""
+    try:
+        return Path(path).resolve().relative_to(Path(root).resolve()).as_posix()
+    except ValueError:
+        return str(path)
+
+
 def parse_csv_numbers(value, cast=float):
     if isinstance(value, list):
         return value
@@ -128,7 +136,7 @@ def load_base_data(drkg_dir: Path, ic50_min: float, ic50_max: float, expression_
             "nsclc_cell_lines": int(pair_table.loc[pair_table["is_nsclc"], "ccl_name"].nunique()),
             "nsclc_pairs": int(pair_table["is_nsclc"].sum()),
             "expression_dim": int(expression_raw.shape[1]),
-            "expression_hdf": str(expression_hdf),
+            "expression_hdf": repo_relative(expression_hdf, ROOT),
             "kg_dim": int(kg.shape[1]),
             "targets": ["AAC", "log2IC50"],
         },

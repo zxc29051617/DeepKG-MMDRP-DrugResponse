@@ -78,6 +78,14 @@ def package_root() -> Path:
     raise RuntimeError("Could not locate package root containing Data/, results/, and src/.")
 
 
+def repo_relative(path, root) -> str:
+    """Return path relative to the repository root when possible."""
+    try:
+        return Path(path).resolve().relative_to(Path(root).resolve()).as_posix()
+    except ValueError:
+        return str(path)
+
+
 def ensure_out(out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     return out_dir
@@ -614,10 +622,10 @@ def write_manifest(out_dir: Path, summary: pd.DataFrame, args):
     best_row = summary.sort_values("combined_RMSE_mean", ascending=True).iloc[0].to_dict()
     manifest = {
         "scope": "pancancer overall only",
-        "evaluation_dir": str(args.evaluation_dir),
-        "full_fold_dir": str(args.full_fold_dir),
-        "baseline_full_fold_dir": str(args.baseline_full_fold_dir),
-        "output_dir": str(out_dir),
+        "evaluation_dir": repo_relative(args.evaluation_dir, args.root),
+        "full_fold_dir": repo_relative(args.full_fold_dir, args.root),
+        "baseline_full_fold_dir": repo_relative(args.baseline_full_fold_dir, args.root),
+        "output_dir": repo_relative(out_dir, args.root),
         "best_by_combined_RMSE": {
             "model": best_row.get("model_display"),
             "combined_RMSE_mean": best_row.get("combined_RMSE_mean"),

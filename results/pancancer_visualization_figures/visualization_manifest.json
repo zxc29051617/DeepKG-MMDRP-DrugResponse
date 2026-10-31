@@ -1,9 +1,9 @@
 {
   "scope": "pancancer overall only",
-  "evaluation_dir": "C:\\Users\\user\\Desktop\\\u91ab\u96fb\u6574\u5408fianl project\\MMDRP_DRKG_repro_package_20260531\\results\\pancancer_50e_evaluation",
-  "full_fold_dir": "C:\\Users\\user\\Desktop\\\u91ab\u96fb\u6574\u5408fianl project\\MMDRP_DRKG_repro_package_20260531\\results\\pancancer_B3_B3DRKG_26Q1_CTRPv2_50e_full_folds",
-  "baseline_full_fold_dir": "C:\\Users\\user\\Desktop\\\u91ab\u96fb\u6574\u5408fianl project\\MMDRP_DRKG_repro_package_20260531\\results\\pancancer_B0_B1_B2_26Q1_CTRPv2_50e_full_folds",
-  "output_dir": "C:\\Users\\user\\Desktop\\\u91ab\u96fb\u6574\u5408fianl project\\MMDRP_DRKG_repro_package_20260531\\results\\pancancer_visualization_figures",
+  "evaluation_dir": "results/pancancer_50e_evaluation",
+  "full_fold_dir": "results/pancancer_B3_B3DRKG_26Q1_CTRPv2_50e_full_folds",
+  "baseline_full_fold_dir": "results/pancancer_B0_B1_B2_26Q1_CTRPv2_50e_full_folds",
+  "output_dir": "results/pancancer_visualization_figures",
   "best_by_combined_RMSE": {
     "model": "B3+DRKG",
     "combined_RMSE_mean": 0.7593700338730229,

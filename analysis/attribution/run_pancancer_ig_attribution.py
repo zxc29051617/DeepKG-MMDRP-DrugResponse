@@ -76,6 +76,14 @@ def package_root() -> Path:
     raise RuntimeError("Could not locate package root containing Data/, results/, and src/.")
 
 
+def repo_relative(path, root) -> str:
+    """Return path relative to the repository root when possible."""
+    try:
+        return Path(path).resolve().relative_to(Path(root).resolve()).as_posix()
+    except ValueError:
+        return str(path)
+
+
 def setup_local_imports(root: Path):
     src = root / "src"
     os.environ["MMDRP_ROOT"] = str(root)
@@ -580,15 +588,15 @@ def main():
         "seed": args.seed,
         "fold": args.fold,
         "model": args.model,
-        "checkpoint": str(checkpoint),
-        "drkg_dir": str(args.drkg_dir),
-        "expression_hdf": str(args.expression_hdf),
+        "checkpoint": repo_relative(checkpoint, args.root),
+        "drkg_dir": repo_relative(args.drkg_dir, args.root),
+        "expression_hdf": repo_relative(args.expression_hdf, args.root),
         "sample_strategy": args.sample_strategy,
         "sample_count": int(len(row_indices)),
         "steps": args.steps,
         "targets": [name for name, _ in targets],
         "device": str(device),
-        "output_dir": str(args.out_dir),
+        "output_dir": repo_relative(args.out_dir, args.root),
     }
     (args.out_dir / "ig_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     print(f"Saved pancancer IG attribution outputs to: {args.out_dir}")
