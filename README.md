@@ -2,7 +2,7 @@
 
 This repository contains a modified MMDRP-based drug response prediction pipeline that adds Drug Repurposing Knowledge Graph (DRKG) embeddings as a third modality.
 
-This project was done for the NTU course 醫學電資整合創意專題(二) (114-2, Spring 2026).
+This project was done for the NTU course 醫學電資整合創意專題(二) (114-2, Spring 2026). Team: [zxc29051617](https://github.com/zxc29051617), [HU-CHIN-YU](https://github.com/HU-CHIN-YU).
 
 The final model compares baseline and multimodal variants using DepMap 26Q1 gene expression, CTRPv2 AAC/log2(IC50) drug sensitivity labels, molecular drug structure features, and DRKG TransE embeddings.
 
@@ -171,6 +171,13 @@ NSCLC-only held-out fold results, averaged over the NSCLC subset of the same hel
 | B3+DRKG | **0.1077** | **0.7793** | **2.3543** | **0.7786** | **0.7817** |
 
 Combined RMSE is 0.7 × AAC RMSE + 0.3 × log2(IC50) RMSE, computed on the original scales. The same score is used for early stopping. All five models use the same 44,049 pairs and the same cell-line splits.
+
+Notes on these results:
+
+- B3+DRKG has the lowest mean combined RMSE: 0.0101 lower than B3 and 0.0070 lower than B2, and better than B3 in 12 of the 15 seed-fold runs.
+- The 15 runs share training data, so a plain paired t-test (p = 0.002 against B3) overstates significance. With the Nadeau–Bengio correction for repeated cross-validation, p is about 0.11.
+- Hyperparameters were tuned for B3+DRKG and reused for the other models, and no separate held-out set was kept.
+- Combined RMSE is dominated by the log2(IC50) term.
 
 Detailed result files:
 
