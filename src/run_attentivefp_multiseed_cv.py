@@ -41,7 +41,7 @@ def add_depmap_lineage(pair_table: pd.DataFrame) -> pd.DataFrame:
         pair_table["lineage_1"] = pair_table.get("lineage_1", np.nan)
         pair_table["lineage_2"] = pair_table.get("lineage_2", np.nan)
         pair_table["lineage_3"] = pair_table.get("lineage_3", np.nan)
-        pair_table["is_nsclc"] = False
+        pair_table["is_nsclc"] = pair_table["lineage_2"].eq(NSCLC_LABEL)
         return pair_table
 
     lineage_cols = ["cell_line_display_name", "lineage_1", "lineage_2", "lineage_3"]
@@ -49,6 +49,7 @@ def add_depmap_lineage(pair_table: pd.DataFrame) -> pd.DataFrame:
     lineage["cell_norm"] = lineage["cell_line_display_name"].map(normalize_name)
     lineage = lineage.drop_duplicates("cell_norm")
 
+    pair_table = pair_table.drop(columns=["lineage_1", "lineage_2", "lineage_3"], errors="ignore")
     pair_table = pair_table.merge(
         lineage[["cell_norm", "lineage_1", "lineage_2", "lineage_3"]],
         on="cell_norm",

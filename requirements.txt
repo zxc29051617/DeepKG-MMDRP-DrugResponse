@@ -2,6 +2,7 @@ numpy
 pandas
 tables
 scikit-learn
+scipy
 torch
 torch-geometric
 rdkit

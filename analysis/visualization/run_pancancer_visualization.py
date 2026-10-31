@@ -318,6 +318,7 @@ def plot_fold_lines(metrics: pd.DataFrame, out_dir: Path, dpi: int):
     metrics = metrics[metrics["evaluation_subset"].eq("overall")].copy()
     metrics = normalize_model_labels(metrics)
     models = ordered_models(metrics)
+    labels = []
 
     fig, ax = plt.subplots(figsize=(10.5, 5.2))
     for i, model in enumerate(models):
@@ -333,8 +334,8 @@ def plot_fold_lines(metrics: pd.DataFrame, out_dir: Path, dpi: int):
             color=MODEL_COLORS.get(model, BASE_COLS[i % len(BASE_COLS)]),
             label=model,
         )
-    ax.set_xticks(np.arange(15))
-    ax.set_xticklabels(labels if "labels" in locals() else [], rotation=45, ha="right", fontsize=8)
+    ax.set_xticks(np.arange(len(labels)))
+    ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=8)
     style_axes(ax, "Combined RMSE Across Seeds and Folds", "Combined RMSE", "Seed-Fold")
     ax.legend(frameon=False, ncol=len(models), loc="upper center", bbox_to_anchor=(0.5, 1.13))
     savefig(fig, out_dir / "06_seed_fold_combined_rmse_line.png", dpi)
@@ -677,14 +678,12 @@ def main():
         raise FileNotFoundError(f"Missing pancancer overall summary: {summary_path}")
     if not metrics_path.exists():
         raise FileNotFoundError(f"Missing fold metrics: {metrics_path}")
-    if not predictions_path.exists():
-        raise FileNotFoundError(f"Missing predictions: {predictions_path}")
 
     summary = normalize_model_labels(pd.read_csv(summary_path))
     if "evaluation_subset" in summary.columns:
         summary = summary[summary["evaluation_subset"].eq("overall")].copy()
     metrics = pd.read_csv(metrics_path)
-    predictions = pd.read_csv(predictions_path)
+    predictions = pd.read_csv(predictions_path) if predictions_path.exists() else None
     rmse_metrics = ["AAC_RMSE", "log2IC50_RMSE", "combined_RMSE"]
     sig_df = compute_reference_significance(metrics, rmse_metrics, reference="B3+DRKG", evaluation_subset="overall")
     sig_df.to_csv(out_dir / "pancancer_rmse_significance_vs_b3drkg.csv", index=False)
@@ -693,9 +692,15 @@ def main():
     plot_correlations(summary, out_dir, args.dpi)
     plot_fold_lines(metrics, out_dir, args.dpi)
     plot_b3_delta(metrics, out_dir, args.dpi)
-    plot_predictions(predictions, out_dir, args.dpi, args.max_scatter_points_per_model, args.random_seed)
-    plot_training_curves(args.full_fold_dir, out_dir, args.dpi)
-    write_training_curve_availability(args.full_fold_dir, args.baseline_full_fold_dir, out_dir)
+    if predictions is not None:
+        plot_predictions(predictions, out_dir, args.dpi, args.max_scatter_points_per_model, args.random_seed)
+    else:
+        print(f"Skipping figures 09-12: {predictions_path} not found.")
+    if args.full_fold_dir.exists():
+        plot_training_curves(args.full_fold_dir, out_dir, args.dpi)
+        write_training_curve_availability(args.full_fold_dir, args.baseline_full_fold_dir, out_dir)
+    else:
+        print(f"Skipping figures 13-16: {args.full_fold_dir} not found.")
     write_manifest(out_dir, summary, args)
 
     print(f"Saved pancancer figures to: {out_dir}")
