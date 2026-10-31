@@ -230,11 +230,8 @@ Run the DRKG pipeline:
 .\run_drkg_pipeline.ps1
 ```
 
-For HDF5-heavy commands on Windows, use an ASCII-only path such as:
-
-```text
-C:\MMDRP_DRKG_repro_package_20260531
-```
+For HDF5-heavy commands on Windows, keep the repository in a folder whose path contains only ASCII characters
+(PyTables/HDF5 cannot open paths with non-ASCII folder names).
 
 Detailed reproduction notes are in:
 

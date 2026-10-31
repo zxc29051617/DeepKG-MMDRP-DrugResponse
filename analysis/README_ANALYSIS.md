@@ -142,5 +142,4 @@ ig_manifest.json
 
 - These scripts are post-training analysis scripts. They do not retrain B0/B1/B2/B3/B3+DRKG.
 - The package root is detected automatically by searching upward for `Data/`, `results/`, and `src/`, so the scripts can be run from the package root or directly by full path.
-- For the cleanest rerun experience, use an ASCII-only path such as `C:\MMDRP_DRKG_repro_package_20260531` before running HDF5-heavy commands.
-- On this machine, `C:\MMDRP_DRKG_repro_package_20260531` was created as a junction pointing to the desktop package so HDF5 can read files through an ASCII path without duplicating the 4GB package.
+- Run HDF5-heavy commands from a folder whose path contains only ASCII characters.
