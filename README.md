@@ -2,7 +2,9 @@
 
 This repository contains a modified MMDRP-based drug response prediction pipeline that adds Drug Repurposing Knowledge Graph (DRKG) embeddings as a third modality.
 
-This project was done for the NTU course 醫學電資整合創意專題(二) (114-2, Spring 2026). Team: [zxc29051617](https://github.com/zxc29051617), [HU-CHIN-YU](https://github.com/HU-CHIN-YU).
+This project was done for the NTU course 醫學電資整合創意專題(二) (114-2, Spring 2026). 
+
+Team: [HSIEN-TING,WANG](https://github.com/zxc29051617), [HU-CHIN-YU](https://github.com/HU-CHIN-YU),[HUANG, YU-WEI](https://github.com/yuwei03).
 
 The final model compares baseline and multimodal variants using DepMap 26Q1 gene expression, CTRPv2 AAC/log2(IC50) drug sensitivity labels, molecular drug structure features, and DRKG TransE embeddings.
 
