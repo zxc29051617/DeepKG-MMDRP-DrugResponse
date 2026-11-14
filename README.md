@@ -44,6 +44,8 @@ B3+DRKG: B3 plus DRKG embedding as a third modality
 
 ## Deep Learning Architecture
 
+![Model architecture: (a) task and data alignment, (b) three-modality model](docs/architecture.png)
+
 The main B3+DRKG model is a three-modality deep learning architecture:
 
 ```text
